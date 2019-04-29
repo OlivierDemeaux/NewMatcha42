@@ -10,7 +10,7 @@
       </div>
 
       <div v-if="this.showError == true">
-        {{this.error}}
+        {{this.error.body}}
       </div>
 
       <v-spacer></v-spacer>
