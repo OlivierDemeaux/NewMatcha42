@@ -49,6 +49,16 @@ router.post('/registerInformations', checkLog(), asyncHandler(async(req, res) =>
   let user = await User.findOne({_id: userId});
   if (!user)
     return res.status(203).send('User doesn\'t exist');
+  if (!age)
+    return res.status(203).send('Age field is empty');
+  if (age < 18)
+    return res.status(203).send('You must be over 18years old to be on our platform!');
+  if (age > 99)
+    return res.status(203).send('You shouldn\'t be alive !!');
+  if (!gender)
+    return res.status(203).send('Gender field is empty');
+  if (!interestedIn)
+    return res.status(203).send('\'Interested in\' field is empty');
   else {
     user.gender = gender;
     user.age = age;
@@ -107,6 +117,7 @@ router.post('/uploadPicture', checkLog(), asyncHandler(async(req, res) => {
   await user.save();
   image.mv('public/' + name, async function(err) {
     if(err) {
+      console.log(err);
       return res.status(500).send('the upload failed');
     } else {
       return res.status(200).send('It worked');

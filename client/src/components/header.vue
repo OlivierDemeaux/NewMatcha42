@@ -145,4 +145,5 @@ export default {
 .home:hover {
   color: #E9E;
 }
+
 </style>

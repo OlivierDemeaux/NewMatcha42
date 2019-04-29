@@ -23,8 +23,6 @@ router.post('/sendNotification', checkLog(), asyncHandler(async(req, res) => {
       {blocker: userId, blocked: receiver._id}
     ]
   });
-  if (block)
-      return res.status(203).send('Error, you were blocked by this person');
   let notification = new NotificationModel();
   notification.notifier = userId;
   notification.notified = receiver._id;

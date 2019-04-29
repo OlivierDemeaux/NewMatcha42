@@ -4,10 +4,6 @@
     Start Something Real -- Here are the profils that match yours
   </div>
 
-  <div v-if="this.showError == true">
-    {{this.error}}
-  </div>
-
   <div class="filters">
     <div class="filters-ages">
       <div>
@@ -51,7 +47,7 @@
 
   <br>
 
-  <div class="suggestions-big-box" v-if="user && user.picture1 !== 'images/default.jpg'">
+  <div class="suggestions-big-box" v-if="user && (user.picture1 !== 'images/default.jpg' || user.picture2 !== 'images/default.jpg' || user.picture3 !== 'images/default.jpg' || user.picture4 !== 'images/default.jpg' || user.picture5 !== 'images/default.jpg')">
         <div v-if="suggestions">
           <div v-if="suggestions.length === 0">
             No user match your Advanced Search ! Sorry !
@@ -63,14 +59,20 @@
           <h3>{{user.firstName}} {{user.lastName}}, {{user.age}}</h3>
         </div>
   </div>
-  <div class="suggestions-big-box" v-if="user && user.picture1 == 'images/default.jpg'">
+  <div class="suggestions-big-box" v-if="user && (user.picture1 == 'images/default.jpg' && user.picture2 == 'images/default.jpg' && user.picture3 == 'images/default.jpg' && user.picture4 == 'images/default.jpg' && user.picture5 == 'images/default.jpg')">
         You must add at least one picture of you to access to the profils you may like
   </div>
+
+  <div class="error" v-html="error" v-if="this.showError == true">
+    {{this.error}}
+  </div>
+
+
   <div class="show-user-details" v-if="popup">
     <div class="show-user-details-profil">
       <img class="show-user-close-button" @click="closeProfil()" src="../assets/cancel.svg">
       <div class="show-user-global">
-      <div class="show-user-picture" @click="nextPicture()" v-bind:style="{ backgroundImage: 'url(' + apiURL + this.userToShow.picture1 + ')' }"></div>
+      <div class="show-user-picture" v-bind:style="{ backgroundImage: 'url(' + apiURL + this.userToShow.picture1 + ')' }"></div>
       <div class="show-user-infos">
         <div class="show-user-infos-names">
           {{this.userToShow.firstName}}  {{this.userToShow.lastName}}
@@ -373,5 +375,9 @@ export default {
 	width: 298px;
 	text-align: initial;
 	border: 1px solid black;
+}
+
+.error {
+  color: red;
 }
 </style>

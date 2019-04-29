@@ -32,6 +32,8 @@ router.post('/login', asyncHandler(async(req, res) => {
     let usernameExists = await UserModel.findOne({username: username});
     if (!usernameExists)
         return res.status(203).send('login fail');
+    if (usernameExists.isVerified == false)
+        return res.status(203).send('You must verify your account first');
     const isPasswordRight = await bcrypt.compare(password, usernameExists.password);
     if (!isPasswordRight) {
         res.status(203).send('login fail');

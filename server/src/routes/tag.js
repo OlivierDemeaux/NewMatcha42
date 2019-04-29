@@ -15,6 +15,8 @@ router.post('/add', checkLog(), asyncHandler(async(req, res) => {
   if (!tag)
     return res.status(203).send('Error');
   tag = sanitizeHtml(tag.toString());
+  if (tag[0] != '#')
+    return res.status(203).send('Your tagg must start with a \'#\'');
   let tagExists = await TagModel.findOne({tag: tag});
   if (!tagExists) {
     tagExists = new TagModel();

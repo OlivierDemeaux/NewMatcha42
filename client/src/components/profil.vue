@@ -26,8 +26,8 @@
           <h1 v-if='user'>  Welcome {{user.firstName}} {{user.lastName}}</h1>
         </div>
 
-        <div v-if="this.showError == true">
-          {{this.error}}
+        <div class="error" v-html="error" v-if="this.showError == true">
+          {{this.error.body}}
         </div>
 
         <div class="profil-description">
@@ -113,8 +113,10 @@
               </v-layout>
             </div>
           </div>
+          <br/><br/><br/><br/><br/><br/>
 
-          <br/>
+          <br/><br/><br/><br/><br/><br/>
+
           <v-layout align-center justify-center row fill-height>
             <v-flex class="test-modif" align-self-center xs10>
               <div class="white elevation-2">
@@ -131,7 +133,10 @@
               </div>
           </v-flex>
         </v-layout>
-        <br>
+        <br/>
+
+        <br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/>
 
         <v-layout class="test-modif-2" align-center justify-center row fill-height >
           <v-flex align-self-center xs10>
@@ -432,5 +437,9 @@ methods: {
 	width: 298px;
 	text-align: initial;
 	border: 1px solid black;
+}
+
+.error {
+  color: red;
 }
 </style>
