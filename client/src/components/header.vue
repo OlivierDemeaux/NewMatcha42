@@ -122,7 +122,7 @@ export default {
         token: this.$store.state.token,
         notification: notif._id
       }, {emulateJSON: true}).then((res) => {
-        this.startNotif();
+        this.getNotification();
       }, (err) => {
         this.error = err
         this.showError = true
