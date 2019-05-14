@@ -61,7 +61,7 @@ router.post('/', asyncHandler(async(req, res) => {
       var token = new Token({_userId: user._id, token: crypto.randomBytes(16).toString('hex')});
       await user.save();
       await token.save();
-      var transporter = nodemailer.createTransport({ service: 'Hotmail', auth: { user: "olivierdem_218@hotmail.com", pass: "Nietzsche1"} });
+      var transporter = nodemailer.createTransport({ service: 'Hotmail', auth: { user: "olivierdem_218@hotmail.com", pass: ""} });
       var mailOptions = { from: 'olivierdem_218@hotmail.com', to: user.emailAddress, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/localhost:8080' + '\/confirmation\/' + token.token + '.\n' };
       transporter.sendMail(mailOptions, function (err) {
           if (err) { return res.status(500).send({ msg: err.message }); }
